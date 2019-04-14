@@ -113,4 +113,4 @@ with tf.Session() as sess:
     save_path = saver.save(sess, 'Mnist_parameter_RNN/save_parameter.ckpt')
 
     # 提示神经网络已经完成训练
-    print('The training is over!')
+    print('Congratulations! The training is over!')
