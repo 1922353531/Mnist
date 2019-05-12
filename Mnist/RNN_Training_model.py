@@ -33,15 +33,11 @@ keep_drop = tf.placeholder(tf.float32)
 
 # 以字典的形式定义权重与偏值
 weights = {
-    # (28, 128), 输入数据进入cell时参与的运算的的权重
     'in':tf.Variable(tf.random_normal([n_inputs, n_hidden_units])),
-    # (128, 10)，数据从cell中变为输出数据时参与的运算的权重
     'out':tf.Variable(tf.random_normal([n_hidden_units, n_classes]))
 }
 biases = {
-    # (128, )，输入数据进入cell时参与的运算的的偏值
     'in':tf.Variable(tf.constant(0.1, shape=[n_hidden_units,])),
-    # (10, )，数据从cell中变为输出数据时参与的运算的偏值
     'out':tf.Variable(tf.constant(0.1, shape=[n_classes,]))
 }
 
@@ -49,11 +45,10 @@ biases = {
 # 定义RNN
 def RNN(X, weights, biases):
 
-    # 定义输入数据进入cell时经过的隐藏层
     X = tf.reshape(X, [-1, n_inputs])
     X_into_Cell = tf.matmul(X, weights['in']) + biases['in']
-    regularizer(weights['in'])# 将权重weights['in']的正则化项加入到losses集合中
-    X_into_Cell_drop = tf.nn.dropout(X_into_Cell, keep_drop)# 防止过拟合
+    regularizer(weights['in'])
+    X_into_Cell_drop = tf.nn.dropout(X_into_Cell, keep_drop)
     X_into_Cell_drop = tf.reshape(X_into_Cell_drop, [-1, n_steps, n_hidden_units])
 
 
@@ -79,8 +74,8 @@ prediction = RNN(x, weights, biases)
 
 # 定义含有正则化项的损失函数
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y, logits=prediction))
-tf.add_to_collection("losses",cost)# 将不含有正则化项的损失函数加入losses集合中
-cost = tf.add_n(tf.get_collection("losses"))# 将losses集合中的所有元素相加得到含有正则化项的损失函数（最终的损失函数）
+tf.add_to_collection("losses",cost)
+cost = tf.add_n(tf.get_collection("losses"))
 
 # 定义训练函数
 train_step = tf.train.AdamOptimizer(learning_rate).minimize(cost)
@@ -91,7 +86,7 @@ accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
 
 with tf.Session() as sess:
 
-    sess.run(tf.initialize_all_variables())# 全局初始化
+    sess.run(tf.initialize_all_variables())
 
     counter = 10
 
