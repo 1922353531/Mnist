@@ -41,28 +41,28 @@ def max_pool_2x2(x):  # 其中的x为convd2中运算完毕的x
 
 
 # 定义神经网络的placeholder
-xs = tf.placeholder(tf.float32, [None, 784])  # 因为输入数据是28*28的矩阵(包括了所有的输入图片)
-ys = tf.placeholder(tf.float32, [None, 10])   # 其中的10是因为有0—9十个数字
+xs = tf.placeholder(tf.float32, [None, 784])  
+ys = tf.placeholder(tf.float32, [None, 10])   
 keep_prob = tf.placeholder(tf.float32)
 
-x_image = tf.reshape(xs, [-1, 28, 28, 1])  # 其中的-1代表着一共输入了多少数据，两个28即为输入数据矩阵的大小，1为输入图片的通道数（因为是灰色照片）
+x_image = tf.reshape(xs, [-1, 28, 28, 1]) 
 
 # 定义conv1 layer
-W_conv1 = weight_variable([5, 5, 1, 32])  # 其中的两个5代表卷积核的大小，1代表输入的一张图片（包含许多特征）的通道数，32代表经过这一神经层处理后生成的通道数（特征数）
-b_conv1 = bias_variable([32])  # 因为生成了32个通道
-h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)  # 经过卷积运算和激活函数运算得到的数据，尺寸：28*28*32
-h_pool1 = max_pool_2x2(h_conv1)  # 经过最大池化运算得到的数据，尺寸：14*14*32（池化不改变通道数只改变大小）
+W_conv1 = weight_variable([5, 5, 1, 32])  
+b_conv1 = bias_variable([32])  
+h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1) 
+h_pool1 = max_pool_2x2(h_conv1)  
 
 # 定义conv2 layer
-W_conv2 = weight_variable([5, 5, 32, 64])  # 其中的两个5代表卷积核的大小，32代表输入图片（包含许多特征）经过conv1 layer处理后的通道数，64代表经过这一神经层处理后生成的通道数（特征数）
+W_conv2 = weight_variable([5, 5, 32, 64])  
 b_conv2 = bias_variable([64])
-h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)  # 经过卷积运算和激励函数运算得到的数据，尺寸：14*14*64
-h_pool2 = max_pool_2x2(h_conv2)  # 经过最大池化运算得到的数据，尺寸：7*7*64（池化不改变通道数只改变大小）
+h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)  
+h_pool2 = max_pool_2x2(h_conv2)  
 
 # 定义func1 layer
 W_fc1 = weight_variable([7 * 7 * 64, 1024])
 b_fc1 = bias_variable([1024])
-h_pool2_falt = tf.reshape(h_pool2, [-1, 7 * 7 * 64])  # 将h_pool2的形状改为[-1,7*7*64]
+h_pool2_falt = tf.reshape(h_pool2, [-1, 7 * 7 * 64])
 h_fc1 = tf.nn.relu(tf.matmul(h_pool2_falt, W_fc1) + b_fc1)
 h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)  # 防止过拟合
 
