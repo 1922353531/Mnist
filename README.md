@@ -15,4 +15,5 @@ If you want to use CNN model, you can run CNN_Training_Model.py directly and the
 ### 3.Using retrained network
 There is only CNN retrained model in this project and you can run CNN_Trained_Model_1.0.py or CNN_Trained_Model.py directly. If you want to use retrained RNN model, you can train it by yourself.
 ## PS
-Due to the training datasets is pure Mnist, maybe you will find the retrained network can't recognition some wordarts. This problem can be sovled by using larger and more variable datasets.
+1.Due to the training datasets is pure Mnist, maybe you will find the retrained network can't recognition some wordarts. This problem can be sovled by using larger and more variable datasets.
+2.Before you run any programming, please make sure the paths in it is available in your computer.
