@@ -1,9 +1,9 @@
 # Mnist
 ## Abstract
-This is a primary projects of DeepLearning written by Python3, which can help you get start in DeepLearning. This projects is implemented by Tensorflow and CNN(Convlution Neural Network) and RNN(Recurrent Neural Network). And you can learn them here.
+This is a primary project of DeepLearning written by Python3, which can help you get start in DeepLearning. This project is implemented by Tensorflow and CNN(Convlution Neural Network) and RNN(Recurrent Neural Network). And you can learn them here.
 ## How to get start
 ### 1.Structure
-1. MNIST_data contains MNIST'datasets and if you run the model first it will be downloaded automatically.
+1. MNIST_data contains MNIST'datasets and if you run the model first, they will be downloaded automatically.
 2. Mnist_parameter_CNN contains retrained parameters of CNN model and you can use them directly.
 3. Mnist_parameter_RNN contains retrained parameters of RNN model and you can use them directly.
 4. CNN_Trained_Model_1.0.py allows you use the retrained CNN's parameters to predict in the Mnist_datasets.
@@ -16,4 +16,4 @@ If you want to use CNN model, you can run CNN_Training_Model.py directly and the
 There is only CNN retrained model in this project and you can run CNN_Trained_Model_1.0.py or CNN_Trained_Model.py directly. If you want to use retrained RNN model, you can train it by yourself.
 ## PS
 1.Due to the training datasets is pure Mnist, maybe you will find the retrained network can't recognition some wordarts. This problem can be sovled by using larger and more variable datasets.  
-2.Before you run any programming, please make sure the paths in it is available in your computer.
+2.Before you run any programming, please make sure the paths in it is available for your computer.
